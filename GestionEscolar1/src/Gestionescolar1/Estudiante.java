@@ -9,39 +9,23 @@ package Gestionescolar1;
 //implementacion del comparador
 public class Estudiante implements Comparador {
     // atributos
-    private int nIE;
-    private String nombre;
-    private String apellido;
-    private int edad;
-    private char sexo;
-    private char grado;
-    private char zona;
+    private static int nie;
+    private static String nombre;
+    private static String apellido;
+    private static int edad;
+    private static String sexo;
+    private static String grado;
+    private static String zona;
     
-    public Estudiante()
-    // metodo contructor
-    {
-        this.nIE=0;
-        this.nombre="";
-        this.apellido="";
-        this.edad=0;
-        this.sexo=' ';
-        this.grado=' ';
-        this.zona=' ';
-    }
-    //metodo constructor que recibe un int para para la edad
-    public Estudiante(int _edad)
-    {
-        edad=_edad;
-    }
     
     // metodo modificador el NIE(Numero de Identifiacion Estudiantil)
-    public void setNIE(int _nIE)
+    public void setNIE(int _nie)
     {
-        this.nIE = _nIE;
+        this.nie = _nie;
     }
     public int getNIE()
     {
-        return this.nIE;
+        return this.nie;
     }
     
      //metodo modificador el nombre
@@ -57,7 +41,7 @@ public class Estudiante implements Comparador {
     //metodo modificador el apellido
     public void setApellido(String _apellido)
     {
-        this.nombre=_apellido;       
+        this.apellido=_apellido;       
     }
     public String getApellido()
     {
@@ -75,74 +59,34 @@ public class Estudiante implements Comparador {
     }
     
     // metodo modificador del sexo (M=masculino y F=femenino)
-    public void setSexo(char _sexo)
+    public void setSexo(String _sexo)
     {
         this.sexo = _sexo;
     }
     public String getSexo()
     {
-        char ab ="f".charAt(0);
-        if(ab==this.sexo){
-            return "femenino";
-        }else{
-        return "masculino";
-        }
+        return this.sexo;
     }
     
     // metodo modificador el grado academico
-    public void setGrado(char _grado)
+    public void setGrado(String _grado)
     {
         this.grado = _grado;
     }
-    public char getGrado()
+    public String getGrado()
     {
         return this.grado;
     }    
     
      // metodo modificador la zona de residencia(R=rural y U=urbana)
-    public void setZona(char _zona)
+    public void setZona(String _zona)
     {
         this.zona = _zona;
     }
     public String getZona()
     {
-        char ab ="r".charAt(0);
-        if(ab==this.zona)
-        {
-            return "rural";
-        }
-        else
-        {
-        return "urbana";
-        }
-    }
-    
-    // metodo para identificar si es niño o adolescente(niño 0<12 años, adolescente >=12 años)
-    public String nioAd()
-    {
-        String alumno;
-        if(this.getEdad()<12)
-            alumno= "el alumno es niño";
-        else
-        {
-            alumno= "el alumno es adolescente";
-        }
-        return alumno;
-    }
-   
-    //metodo para verificar cuantos alunnos son masculinos y cuantos son femeninos
-    public String femoMas()
-    {
-     String resp;
-     if(this.getSexo()=="femenino")
-     {
-         resp="el estuduante es femenino";   
-     }
-     else
-     {
-         resp="el estidiante es masculino";
-     }
-     return resp;
+        return this.zona;
+        
     }
     
     //metodo para verificar cuantos alunnos son de zona rural y urbana

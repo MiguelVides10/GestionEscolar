@@ -11,24 +11,8 @@ public class Docente implements Comparador {
     private String nombre;
     private String apellido;
     private int edad;
-    private char sexo;
+    private String sexo;
     private String asignatura;
-    
-    //método constructor que recibe un int para la edad
-    public Docente(int _edad)
-    {
-        edad=_edad;
-    }
-    
-    //metodo constructor
-    public Docente(){
-        this.dui=0;
-        this.nombre="";
-        this.apellido="";
-        this.edad=0;
-        this.sexo=' ';
-        this.asignatura="";
-    }
     
     //modificador del Dui
     public void setDui(int _dui){
@@ -49,7 +33,7 @@ public class Docente implements Comparador {
     
     //modificador del apellido
      public void setApellido(String _apellido){
-        this.nombre=_apellido;
+        this.apellido=_apellido;
     }
     public String getApellido(){
        return this.apellido; 
@@ -64,16 +48,11 @@ public class Docente implements Comparador {
     }
     
     //modificador de sexo 
-    public void setSexo(char _sexo){
+    public void setSexo(String _sexo){
         this.sexo=_sexo;
     }
     public String getSexo(){
-    char ac= "f".charAt(0);
-    if(ac==this.sexo){
-        return "femenino";
-    }else{
-        return "masculino";
-    }
+    return this.sexo;
     }
     
     //modificador de asignatura
@@ -84,27 +63,7 @@ public class Docente implements Comparador {
         return this.asignatura;
     }
     
-    //saber si es masculino o femenino
-    public String docMasoFem(){
-        String sex;
-        if(this.getSexo()== "femenino"){
-            sex= "El docente es femenino";
-        }else{
-            sex="El docente es masculino";
-        }
-        return sex;
-    }
-    
-    //mayores a 50 años
-    public String mayor(){
-        String respuesta;
-        if(this.getEdad()>50){
-            respuesta="El docente es mayor de 50 años ";
-        }else{
-        respuesta="El docente es menor de 50 años";
-        }
-        return respuesta;
-    }
+   
     
     //metodos que funcionan para busqueda y ordenamiento en arreglos
     @Override
