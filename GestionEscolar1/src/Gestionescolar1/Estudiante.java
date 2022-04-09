@@ -6,8 +6,8 @@ package Gestionescolar1;
  *
  * @author Gilberto Alexander Ventura Hernandez
  */
-//implementacion del comparador
-public class Estudiante implements Comparador {
+//clase actualizada como abstracta ya que no se inicializo
+public abstract class Estudiante implements Comparador {
     // atributos
     private static int nie;
     private static String nombre;

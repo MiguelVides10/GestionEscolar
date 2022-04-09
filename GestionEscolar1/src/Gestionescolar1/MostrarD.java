@@ -4,9 +4,11 @@
  */
 package Gestionescolar1;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author migue
+ * @author Miguel Angel Vides Deras
  */
 public class MostrarD extends javax.swing.JFrame {
 
@@ -30,7 +32,9 @@ public class MostrarD extends javax.swing.JFrame {
         datos = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        editarbttn = new javax.swing.JButton();
+        mostrarbttn = new javax.swing.JButton();
+        borrarbttn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,9 +44,10 @@ public class MostrarD extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        datos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         jScrollPane1.setViewportView(datos);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -51,11 +56,27 @@ public class MostrarD extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Ver elementos en la base de Docentes");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jButton1.setText("Mostrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editarbttn.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        editarbttn.setText("Editar selección");
+        editarbttn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editarbttnActionPerformed(evt);
+            }
+        });
+
+        mostrarbttn.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        mostrarbttn.setText("Mostrar");
+        mostrarbttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarbttnActionPerformed(evt);
+            }
+        });
+
+        borrarbttn.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        borrarbttn.setText("Borrar Selección");
+        borrarbttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarbttnActionPerformed(evt);
             }
         });
 
@@ -74,8 +95,12 @@ public class MostrarD extends javax.swing.JFrame {
                 .addContainerGap(39, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(292, 292, 292))
+                .addComponent(mostrarbttn)
+                .addGap(73, 73, 73)
+                .addComponent(editarbttn)
+                .addGap(41, 41, 41)
+                .addComponent(borrarbttn)
+                .addGap(95, 95, 95))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(134, 134, 134)
@@ -89,9 +114,15 @@ public class MostrarD extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mostrarbttn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(editarbttn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                            .addComponent(borrarbttn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(17, 17, 17)))
+                .addGap(19, 19, 19))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(216, 216, 216)
@@ -101,12 +132,28 @@ public class MostrarD extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    //Boton para editar datos con metodos de la clase hija CRUDD
+    private void editarbttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarbttnActionPerformed
+        int dui=0;
+        DefaultTableModel tm = (DefaultTableModel) datos.getModel();
+        dui=Integer.parseInt(String.valueOf(tm.getValueAt(datos.getSelectedRow(), 0)));
+        EditarD editar = new EditarD(dui);
+        editar.setVisible(true);
+    }//GEN-LAST:event_editarbttnActionPerformed
+    //Boton para mostrar toda la tabla docentes con metodos de la clase hija
+    private void mostrarbttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarbttnActionPerformed
+    int r=0;
+    CrudD ver = new CrudD(r);
+    ver.mostrar(datos);
+    }//GEN-LAST:event_mostrarbttnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int m=1;
-        CrudD obDocente = new CrudD(m);
-        obDocente.mostrar(datos);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void borrarbttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarbttnActionPerformed
+        int dui=0;
+        DefaultTableModel tm = (DefaultTableModel) datos.getModel();
+        dui=Integer.parseInt(String.valueOf(tm.getValueAt(datos.getSelectedRow(), 0)));
+        BorrarD borrar = new BorrarD(dui);
+        borrar.setVisible(true);
+    }//GEN-LAST:event_borrarbttnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,10 +191,12 @@ public class MostrarD extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton borrarbttn;
     public javax.swing.JTable datos;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton editarbttn;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton mostrarbttn;
     // End of variables declaration//GEN-END:variables
 }

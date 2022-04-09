@@ -6,7 +6,8 @@ package Gestionescolar1;
  *
  * @author Miguel Vides
  */
-public class Docente implements Comparador {
+//Clase actualizada como abstracta (no se inicializa)
+public abstract class Docente implements Comparador {
     private int dui;
     private String nombre;
     private String apellido;
